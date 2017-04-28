@@ -1,0 +1,28 @@
+{
+  "name": "trunksoftware/pdf-generator",
+  "type": "library",
+  "description": "TrunkSoftware PDF Generator from Twig",
+  "homepage": "http://www.trunknetworks.com",
+  "authors": [
+	{
+	  "name": "Chris Weller",
+	  "email": "chris.weller@trunknetworks.com"
+	}
+  ],
+  "repositories": [
+	{
+	  "type": "composer",
+	  "url": "http://packages.trunksoftware.co.uk"
+	}
+  ],
+  "autoload": {
+	"psr-4": {
+	  "TrunkSoftware\\Component\\PDFGenerator\\": "/src/"
+	}
+  },
+  "require": {
+	"Trunk/Wibbler": "0.*",
+	"mpdf/mpdf": "6.*",
+	"twig/twig": "*"
+  }
+}
