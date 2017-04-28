@@ -35,8 +35,8 @@ class PDFGenerator extends \Trunk\Wibbler\Modules\base {
 	public function __construct( $additional_config = null ) {
 		parent::__construct( $additional_config );
 
-		$this->twig = $this->dependency_manager->getService( "twig" );
-		$this->preferences = $this->dependency_manager->getService( "preferences" );
+		$this->twig = $this->dependencies->getService( "twig" );
+		$this->preferences = $this->dependencies->getService( "preferences" );
 
 		$this->namespace = $additional_config['namespace'];
 		$this->query_class = $this->namespace . "\\DocumentQuery";
