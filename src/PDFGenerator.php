@@ -96,6 +96,16 @@ class PDFGenerator extends \Trunk\Wibbler\Modules\base {
 		$data = array_merge( $default_data, $data );
 		$html = $this->twig->render( $base_template, $data );
 
+		$this->fromHtml($html, $filename, $dest);
+	}
+
+	/**
+	 * @param string $html
+	 * @param string $filename
+	 * @param string $destination
+	 */
+	public function fromHtml($html, $filename = 'pdf_file', $destination = 'I')
+	{
 		$margin_left    = $this->preferences->get('PDF.MLEFT');#10;
 		$margin_right   = $this->preferences->get('PDF.MRIGHT');#10;
 		$margin_top     = $this->preferences->get('PDF.MTOP');#30;
@@ -122,12 +132,10 @@ class PDFGenerator extends \Trunk\Wibbler\Modules\base {
 
 		try {
 			$mpdf->WriteHTML( $html );
-			$mpdf->Output( $filename, $dest );
+			$mpdf->Output( $filename, $destination );
 		}
 		catch( \Exception $ex ) {
 			echo $ex->getMessage();
 		}
-
 	}
-
 }
