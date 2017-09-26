@@ -44,24 +44,24 @@ class PDFGenerator extends \Trunk\Wibbler\Modules\base {
 	}
 
 	/**
-	 * 	$data = array(
-	 *   	'header_title' => 'PDF Title',
-	 *   	'content_template' => "path_to_template",
-	 * 	    'content_html' => "<p>Hello World.</p>",
-	 *   	'images' => $image_array,
-	 *   	'hide_header' => false,
-	 * 	    'hide_footer' => false,
-	 *   	'header_template' => "path_to_template",
-	 * 	    'footer_template' => "path_to_template"
-	 * 	);
-
-	 * @param [] $data
+	 *    $data = array(
+	 *    'header_title' => 'PDF Title',
+	 *    'content_template' => "path_to_template",
+	 *        'content_html' => "<p>Hello World.</p>",
+	 *    'images' => $image_array,
+	 *    'hide_header' => false,
+	 *        'hide_footer' => false,
+	 *    'header_template' => "path_to_template",
+	 *        'footer_template' => "path_to_template"
+	 *    );
+	 * @param $data
 	 * @param string $dest
 	 * @param string $base_template
 	 * @param string $filename
-	 * @param [] $document_ids
+	 * @param null $document_ids
+	 * @param array $transformers
 	 */
-	public function generate( $data, $dest = 'I', $base_template = null, $filename = null, $document_ids = null ) {
+	public function generate( $data, $dest = 'I', $base_template = null, $filename = null, $document_ids = null, array $transformers = [] ) {
 
 		// Get the base template for pdfs
 		if ( $base_template == null ) {
@@ -95,6 +95,8 @@ class PDFGenerator extends \Trunk\Wibbler\Modules\base {
 		// We merge the arrays so we could override the default values if necessary
 		$data = array_merge( $default_data, $data );
 		$html = $this->twig->render( $base_template, $data );
+
+		$html = $this->postRenderTransform($transformers, $html);
 
 		$this->fromHtml($html, $filename, $dest);
 	}
@@ -137,5 +139,27 @@ class PDFGenerator extends \Trunk\Wibbler\Modules\base {
 		catch( \Exception $ex ) {
 			echo $ex->getMessage();
 		}
+	}
+
+	public function postRenderTransform(array $transformersList, $html) {
+		$transformers = $this->getTransformers($transformersList, 'post-render');
+
+		foreach($transformers as $transformer) {
+			$html = $transformer->transform($html);
+		}
+
+		return $html;
+	}
+
+	/**
+	 * @param AbstractTransformer[] $transformers
+	 * @param $type
+	 * @return AbstractTransformer[]
+	 */
+	public function getTransformers(array $transformers, $type) {
+		$filter = function( AbstractTransformer $transformer) use($type) {
+			return $transformer->matchType($type);
+		};
+		return array_filter($transformers, $filter);
 	}
 }
