@@ -127,6 +127,7 @@ class PDFGenerator extends \Trunk\Wibbler\Modules\base {
 			$margin_header  ? $margin_header    : 3,
 			$margin_footer  ? $margin_footer    : 3
 		);
+		$mpdf->setAutoBottomMargin = 'stretch' ;
 
 		#$mpdf->debug = true;
 		$mpdf->collapseBlockMargins = false;
