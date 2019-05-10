@@ -106,8 +106,10 @@ class PDFGenerator extends \Trunk\Wibbler\Modules\base {
 	 * @param string $filename
 	 * @param string $destination
 	 */
-	public function fromHtml($html, $filename = 'pdf_file', $destination = 'I')
+	public function fromHtml($html, $filename = 'pdf_file', $destination = 'I', array $transformers = [] )
 	{
+		$html = $this->postRenderTransform($transformers, $html);
+
 		$margin_left    = $this->preferences->get('PDF.MLEFT');#10;
 		$margin_right   = $this->preferences->get('PDF.MRIGHT');#10;
 		$margin_top     = $this->preferences->get('PDF.MTOP');#30;
