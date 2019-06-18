@@ -1,11 +1,5 @@
 <?php
-namespace TrunkSoftware\Component\PDFGenerator;
-/**
- * Created by PhpStorm.
- * User: trunk
- * Date: 26/09/17
- * Time: 16:05
- */
+namespace Trunk\Component\PDFGenerator;
 
 abstract class AbstractTransformer {
 	public $type;

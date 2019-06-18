@@ -1,5 +1,5 @@
 <?php
-namespace TrunkSoftware\Component\PDFGenerator;
+namespace Trunk\Component\PDFGenerator;
 
 use Trunk\PreferencesLibrary\Modules\Preferences;
 use Trunk\Wibbler\WibblerDependencyContainer;
