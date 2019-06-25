@@ -23,7 +23,7 @@
   },
   "require": {
 	"trunk/wibbler": "*",
-	"mpdf/mpdf": "6.*",
+	"mpdf/mpdf": "8.*",
 	"twig/twig": "*"
   }
 }
