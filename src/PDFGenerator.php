@@ -117,18 +117,15 @@ class PDFGenerator extends \Trunk\Wibbler\Modules\base {
 		$margin_header  = $this->preferences->get('PDF.MHEADER');#3;
 		$margin_footer  = $this->preferences->get('PDF.MFOOTER');#3;
 
-		$mpdf = new \mPDF(
-			'',
-			'A4',
-			$font_size      = '',#font-size in points(pt)
-			$font_family    = '', #font-family
-			$margin_left    ? $margin_left      : 10,
-			$margin_right   ? $margin_right     : 10,
-			$margin_top     ? $margin_top       : 30,
-			$margin_bottom  ? $margin_bottom    : 15,
-			$margin_header  ? $margin_header    : 3,
-			$margin_footer  ? $margin_footer    : 3
-		);
+		$mpdf = new \Mpdf\Mpdf([
+			'format' => 'A4',
+			'margin-left' => $margin_left    ? $margin_left      : 10,
+			'margin-right' => $margin_right   ? $margin_right     : 10,
+			'margin-top' => $margin_top     ? $margin_top       : 30,
+			'margin-bottom' => $margin_bottom  ? $margin_bottom    : 15,
+			'margin-header' => $margin_header  ? $margin_header    : 3,
+			'margin-footer' => $margin_footer  ? $margin_footer    : 3
+		]);
 		$mpdf->setAutoBottomMargin = 'stretch' ;
 
 		#$mpdf->debug = true;
