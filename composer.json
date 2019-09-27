@@ -1,9 +1,8 @@
 {
-  "name": "trunk/pdf-generator",
+  "name": "primesoftwaredevelopment/pdf-generator",
   "type": "library",
-  "description": "TrunkSoftware PDF Generator from Twig",
-  "homepage": "http://www.trunknetworks.com",
-  "type": "library",
+  "description": "Prime Software Development PDF Generator from Twig",
+  "homepage": "http://www.primesoftwaredevelopment.co.uk/",
   "authors": [
 	{
 	  "name": "Chris Weller",
@@ -13,7 +12,7 @@
   "repositories": [
 	{
 	  "type": "vcs",
-	  "url": "https://github.com/chrisweller/trunk-wibbler1"
+	  "url": "https://github.com/chrisweller/wibbler1-core"
 	}
   ],
   "autoload": {
@@ -22,7 +21,7 @@
 	}
   },
   "require": {
-	"trunk/wibbler": "*",
+	"primesoftwaredevelopment/wibbler": "*",
 	"mpdf/mpdf": "8.*",
 	"twig/twig": "*"
   }
